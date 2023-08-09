@@ -355,3 +355,7 @@ Expected Result
 | min_age | max_age | avg_age |
 |---------|---------|---------|
 | 21 | 23 | 22.00 |
+
+#resources
+--1.https://tableplus.com/blog/2018/04/postgresql-how-to-grant-access-to-users.html
+--2.https://www.postgresql.org/docs/online-resources/
