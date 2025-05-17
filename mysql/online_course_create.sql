@@ -9,6 +9,7 @@ CREATE TABLE Student (
     Phone VARCHAR(15)	
 );
 
+-- create table instructor
 CREATE TABLE Instructor (	
     InstructorID INT AUTO_INCREMENT PRIMARY KEY,	
     Name VARCHAR(255) NOT NULL,	
@@ -16,7 +17,8 @@ CREATE TABLE Instructor (
     Phone VARCHAR(15),	
     Department VARCHAR(50)	
 );	
-	
+
+-- create table course
 CREATE TABLE Course (
     CourseID INT AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,
@@ -24,6 +26,11 @@ CREATE TABLE Course (
     InstructorID INT,
     FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID) ON DELETE CASCADE
 );
+
+-- delete item from instructor table
+DELETE FROM Instructor WHERE InstructorID = 6;
+-- see data from instructor table
+SELECT * FROM Course WHERE InstructorID = 6;
 
 
 CREATE TABLE Enrollment (	

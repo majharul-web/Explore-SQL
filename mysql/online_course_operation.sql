@@ -119,3 +119,49 @@ ORDER BY Roll ASC;
 SELECT Department, COUNT(*) AS TotalStudents
 FROM Student
 GROUP BY Department;
+
+
+
+-- Create Instructor Table
+CREATE TABLE Instructor (  
+   InstructorID INT AUTO_INCREMENT PRIMARY KEY,   
+   Name VARCHAR(255) NOT NULL,
+   Email VARCHAR(255) NOT NULL UNIQUE,
+   Phone VARCHAR(15), 
+   Department VARCHAR(50) 
+); 
+
+-- Create Course Table with ON DELETE CASCADE
+CREATE TABLE Course (
+   CourseID INT AUTO_INCREMENT PRIMARY KEY,
+   Title VARCHAR(255) NOT NULL,
+   Credits INT NOT NULL,
+   InstructorID INT,
+   FOREIGN KEY (InstructorID) REFERENCES Instructor(InstructorID) ON DELETE CASCADE
+);
+
+-- Insert Sample Instructors
+INSERT INTO Instructor (Name, Email, Phone, Department) VALUES
+('Rakib Hasan', 'rakib@example.com', '01711111111', 'Computer Science'),
+('Sabina Akter', 'sabina@example.com', '01722222222', 'Mathematics'),
+('Tanvir Islam', 'tanvir@example.com', '01733333333', 'Physics'),
+('Mahmudul Haque', 'mahmud@example.com', '01744444444', 'Chemistry'),
+('Sumaiya Sultana', 'sumaiya@example.com', '01755555555', 'Biology'),
+('Forhad Hossain', 'forhad@example.com', '01766666666', 'Computer Science');
+
+-- Insert Courses (some linked to InstructorID = 6)
+INSERT INTO Course (Title, Credits, InstructorID) VALUES
+('Data Structures', 4, 6),
+('Operating Systems', 3, 6),
+('Web Development', 3, 1),
+('Linear Algebra', 3, 2),
+('Organic Chemistry', 4, 4);
+
+-- View courses  by InstructorID = 6 before deletion
+SELECT * FROM Course WHERE InstructorID = 6;
+
+-- Delete Instructor with ID = 6
+DELETE FROM Instructor WHERE InstructorID = 6;
+
+-- View again: Courses with InstructorID = 6 should be gone
+SELECT * FROM Course WHERE InstructorID = 6;
